@@ -10,11 +10,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-            - name: Upload JAR artifact
-               uses: actions/upload-artifact@v4
-               with:
-                  name: springboot-app
-                  path: target/*.jar
 
     steps:
       - name: Checkout code
@@ -28,3 +23,9 @@ jobs:
 
       - name: Build project
         run: mvn clean package -DskipTests
+
+      - name: Upload JAR artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: springboot-app
+          path: target/*.jar
