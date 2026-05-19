@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - feature/github-action-pipeline
+      - pipeline-setup
   pull_request:
 
 jobs:
@@ -21,11 +21,5 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      - name: Cache Maven
-        uses: actions/cache@v4
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-
-      - name: Build (skip tests)
+      - name: Build project
         run: mvn clean package -DskipTests
